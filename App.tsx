@@ -1,12 +1,11 @@
+import { theme } from "./src/global/styles/theme";
+import { CategorySelect } from "./src/screens/category-select";
 import { Poppins_400Regular, Poppins_500Medium, Poppins_700Bold, useFonts } from "@expo-google-fonts/poppins";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useCallback, useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { ThemeProvider } from "styled-components";
-
-import { theme } from "./src/global/styles/theme";
-import { Register } from "./src/screens/register";
 
 export default function App() {
   const [appReady, setAppReady] = useState(false);
@@ -48,7 +47,7 @@ export default function App() {
       style={{ flex: 1 }}
     >
       <ThemeProvider theme={theme}>
-        <Register />
+        <CategorySelect />
       </ThemeProvider>
     </View>
   );
