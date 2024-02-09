@@ -49,7 +49,7 @@ export const Register = () => {
     setCategoryModalOpen(!categoryModalOpen);
   }
 
-  function handleRegister(form: FormData) {
+  function handleRegister(form) {
     if (!transactionType) return Alert.alert("Selecione o tipo da transação!");
 
     if (category.key === "category")
