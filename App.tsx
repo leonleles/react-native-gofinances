@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useCallback, useEffect, useState } from "react";
-import { View } from "react-native";
+import { StatusBar, View } from "react-native";
 import { ThemeProvider } from "styled-components";
 
 import { theme } from "./src/global/styles/theme";
@@ -43,6 +43,7 @@ export default function App() {
     <View onLayout={onLayout} style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
+          <StatusBar barStyle="light-content" />
           <AppRoutes />
         </NavigationContainer>
       </ThemeProvider>
