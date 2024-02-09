@@ -1,17 +1,35 @@
-import * as S from "./styles"
+import * as S from "./styles";
 
-export const HighLightCard = () => {
-    return (
-        <S.Container>
-            <S.Header>
-                <S.Title>Entrada</S.Title>
-                <S.Icon name="arrow-up-circle"/>
-            </S.Header>
-
-            <S.Footer>
-                <S.Amount>R$ 17.400,00</S.Amount>
-                <S.LastTransaction>Última entrada 13  de abril</S.LastTransaction>
-            </S.Footer>
-        </S.Container>
-    )
+interface Props {
+  type: "up" | "down" | "total";
+  title: string;
+  amount: string;
+  lastTransaction: string;
 }
+
+const icon = {
+  up: "arrow-up-circle",
+  down: "arrow-down-circle",
+  total: "dollar-sign",
+};
+
+export const HighLightCard = ({
+  type,
+  title,
+  amount,
+  lastTransaction,
+}: Props) => {
+  return (
+    <S.Container type={type}>
+      <S.Header>
+        <S.Title>{title}</S.Title>
+        <S.Icon name={icon[type]} type={type} />
+      </S.Header>
+
+      <S.Footer>
+        <S.Amount type={type}>{amount}</S.Amount>
+        <S.LastTransaction type={type}>{lastTransaction}</S.LastTransaction>
+      </S.Footer>
+    </S.Container>
+  );
+};
