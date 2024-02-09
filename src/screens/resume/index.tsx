@@ -101,6 +101,18 @@ export const Resume = () => {
           paddingBottom: useBottomTabBarHeight(),
         }}
       >
+        <S.MonthSelect>
+          <S.MonthSelectButton>
+            <S.MonthSelectIcon name="chevron-left" />
+          </S.MonthSelectButton>
+
+          <S.Month>Maio</S.Month>
+
+          <S.MonthSelectButton>
+            <S.MonthSelectIcon name="chevron-right" />
+          </S.MonthSelectButton>
+        </S.MonthSelect>
+
         <S.ChartContainer>
           <VictoryPie
             data={totalByCategories}
@@ -122,7 +134,7 @@ export const Resume = () => {
           <HistoryCard
             key={category.name}
             title={category.name}
-            amount={category.total}
+            amount={category.totalFormatted}
             color={category.color}
           />
         ))}
