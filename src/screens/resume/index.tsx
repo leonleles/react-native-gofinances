@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useEffect, useState } from "react";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components/native";
@@ -32,7 +33,6 @@ export const Resume = () => {
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>(
     []
   );
-
   const theme = useTheme();
 
   async function loadData() {
@@ -94,7 +94,13 @@ export const Resume = () => {
         <S.Title>Resumo por categoria</S.Title>
       </S.Header>
 
-      <S.Content>
+      <S.Content
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{
+          padding: 24,
+          paddingBottom: useBottomTabBarHeight(),
+        }}
+      >
         <S.ChartContainer>
           <VictoryPie
             data={totalByCategories}
@@ -105,7 +111,7 @@ export const Resume = () => {
               labels: {
                 fontSize: RFValue(18),
                 fontWeight: "bold",
-                fill: theme.colors.shape
+                fill: theme.colors.shape,
               },
             }}
             labelRadius={50}

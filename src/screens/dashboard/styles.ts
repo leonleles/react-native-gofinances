@@ -64,7 +64,7 @@ export const Icon = styled(Feather)`
 
 export const HighLightCards = styled.ScrollView.attrs({
   horizontal: true,
-  showHorizontalScrollIndicator: false,
+  showsHorizontalScrollIndicator: false,
   contentContainerStyle: { paddingHorizontal: 24 },
 })`
   width: 100%;
@@ -85,7 +85,7 @@ export const Title = styled.Text`
 `;
 
 export const TransactionsList = styled(FlatList as new () => FlatList<DataListProps>).attrs({
-  showVerticalScrollIndicator: false,
+  showsVerticalScrollIndicator: false,
   contentContainerStyle: {
     paddingBottom: getBottomSpace(),
   },
