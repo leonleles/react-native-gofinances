@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
+import { RFValue } from "react-native-responsive-fontsize";
+import { useTheme } from "styled-components/native";
 import { VictoryPie } from "victory-native";
 
 import { HistoryCard } from "../../components/history-card";
@@ -30,6 +32,8 @@ export const Resume = () => {
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>(
     []
   );
+
+  const theme = useTheme();
 
   async function loadData() {
     const response = await AsyncStorage.getItem(dataKey);
@@ -91,7 +95,23 @@ export const Resume = () => {
       </S.Header>
 
       <S.Content>
-        <VictoryPie data={totalByCategories} x="name" y="total" />
+        <S.ChartContainer>
+          <VictoryPie
+            data={totalByCategories}
+            x="percentFormatted"
+            y="total"
+            colorScale={totalByCategories.map((cat) => cat.color)}
+            style={{
+              labels: {
+                fontSize: RFValue(18),
+                fontWeight: "bold",
+                fill: theme.colors.shape
+              },
+            }}
+            labelRadius={50}
+          />
+        </S.ChartContainer>
+
         {totalByCategories.map((category) => (
           <HistoryCard
             key={category.name}
