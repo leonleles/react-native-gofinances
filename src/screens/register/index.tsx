@@ -81,7 +81,7 @@ export const Register = () => {
       setCategory(defaultCategory);
       reset();
 
-      navigation.navigate("Listagem");
+      navigation.navigate("Listagem" as never);
     } catch (error) {
       console.log(error);
       Alert.alert("Não foi possível salvar");
