@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
+import { VictoryPie } from "victory-native";
 
 import { HistoryCard } from "../../components/history-card";
 import { categories } from "../../utils/categories";
@@ -19,7 +20,10 @@ interface CategoryData {
   key: string;
   name: string;
   total: string;
+  totalFormatted: string;
   color: string;
+  percent: number;
+  percentFormatted: string;
 }
 
 export const Resume = () => {
@@ -33,6 +37,13 @@ export const Resume = () => {
 
     const expensives = responseFormatted.filter(
       (expensive: TransactionData) => expensive.type === "negative"
+    );
+
+    const expensivesTotal = expensives.reduce(
+      (acc: number, curr: TransactionData) => {
+        return acc + +curr.amount;
+      },
+      0
     );
 
     const totalByCategory = [];
@@ -51,11 +62,17 @@ export const Resume = () => {
           currency: "BRL",
         });
 
+        const percent = +((categorySum / expensivesTotal) * 100);
+        const percentFormatted = `${percent.toFixed(0)}%`;
+
         totalByCategory.push({
           key: category.key,
           name: category.name,
           color: category.color,
-          total,
+          percent,
+          percentFormatted,
+          total: categorySum,
+          totalFormatted: total,
         });
       }
     });
@@ -74,6 +91,7 @@ export const Resume = () => {
       </S.Header>
 
       <S.Content>
+        <VictoryPie data={totalByCategories} x="name" y="total" />
         {totalByCategories.map((category) => (
           <HistoryCard
             key={category.name}
