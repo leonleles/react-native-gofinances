@@ -7,6 +7,7 @@ import { StatusBar, View } from "react-native";
 import { ThemeProvider } from "styled-components";
 
 import { theme } from "./src/global/styles/theme";
+import { AuthProvider } from "./src/hooks/auth";
 import { AppRoutes } from "./src/routes/app.routes";
 import { SignIn } from "./src/screens/sign-in";
 
@@ -46,7 +47,9 @@ export default function App() {
         <NavigationContainer>
           <StatusBar barStyle="light-content" />
           {/* <AppRoutes /> */}
-          <SignIn />
+          <AuthProvider>
+            <SignIn />
+          </AuthProvider>
         </NavigationContainer>
       </ThemeProvider>
     </View>

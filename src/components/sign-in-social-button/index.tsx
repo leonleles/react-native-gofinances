@@ -1,9 +1,9 @@
-import { RectButtonProps } from "react-native-gesture-handler";
-import { categories } from "../../utils/categories";
-import * as S from "./styles";
+import { TouchableOpacityProps } from "react-native";
 import { SvgProps } from "react-native-svg";
 
-interface Props extends RectButtonProps {
+import * as S from "./styles";
+
+interface Props extends TouchableOpacityProps {
   title: string;
   svg: React.FC<SvgProps>;
 }
