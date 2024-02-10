@@ -8,6 +8,7 @@ import { ThemeProvider } from "styled-components";
 
 import { theme } from "./src/global/styles/theme";
 import { AppRoutes } from "./src/routes/app.routes";
+import { SignIn } from "./src/screens/sign-in";
 
 export default function App() {
   const [appReady, setAppReady] = useState(false);
@@ -44,7 +45,8 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <NavigationContainer>
           <StatusBar barStyle="light-content" />
-          <AppRoutes />
+          {/* <AppRoutes /> */}
+          <SignIn />
         </NavigationContainer>
       </ThemeProvider>
     </View>
